@@ -1,0 +1,139 @@
+@charset "utf-8";
+/* CSS Document */
+/*弹出层*/
+html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var,i{font-style:normal;font-weight:normal}strong{font-weight:bold}li{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit}input,textarea,select{*font-size:100%}legend{color:#000}
+
+.overlay{width:100%;height:100%;filter: alpha(opacity=50);position:fixed;_position:absolute;top:0;left:0;z-index:10;background:#fff;overflow:hidden;_height:expression((document.documentElement.clientHeight>document.documentElement.scrollHeight?document.documentElement.clientHeight:document.documentElement.scrollHeight)+'px');
+_width:expression((document.documentElement.clientWidht>document.documentElement.scrollWidth?document.documentElement.clientWidth:document.documentElement.scrollWidth)+'px');display:none}
+.overlay2{width:100%;height:100%;filter: alpha(opacity=50);position:fixed;_position:absolute;top:0;left:0;z-index:11;background:#000;overflow:hidden;_height:expression((document.documentElement.clientHeight>document.documentElement.scrollHeight?document.documentElement.clientHeight:document.documentElement.scrollHeight)+'px');
+_width:expression((document.documentElement.clientWidht>document.documentElement.scrollWidth?document.documentElement.clientWidth:document.documentElement.scrollWidth)+'px');display:none}
+.overlay3{width:100%;height:100%;filter: alpha(opacity=50);position:fixed;_position:absolute;top:0;left:0;z-index:11;background:#000;overflow:hidden;_height:expression((document.documentElement.clientHeight>document.documentElement.scrollHeight?document.documentElement.clientHeight:document.documentElement.scrollHeight)+'px');
+_width:expression((document.documentElement.clientWidht>document.documentElement.scrollWidth?document.documentElement.clientWidth:document.documentElement.scrollWidth)+'px');display:none; opacity:0.5}
+
+.dragFrame{position:absolute; z-index:12; border:5px solid rgba(0,0,0,0.3); display:none;}
+.dragFrame .tit{height:50px; padding:0 13px 0 13px; font:bold 14px/50px "宋体"; color:#666666; background:#fff; position:relative; border-bottom:2px solid #ffc35b; cursor:move; line-height:50px;}
+.dragFrame .txt{padding:20px 25px; display:inline-block; background:#fff; font-size:14px;}
+.dragFrame .txt a{}
+.dragFrame .txt a:hover{text-decoration:none}
+.dragFrame .tit .close{position:absolute; right:10px; top:10px; cursor:pointer; background:url(../skin/iwei/cancel.png) no-repeat; height:28px; width:28px;}
+.dragFrame .tit .close span{display:none;}
+
+.flipInY{/*
+-moz-animation-name:flipinY;-webkit-animation-name:flipinY;-ms-animation-name:flipinY;-o-animation-name:flipinY;
+*/ backface-visibility:visible !important;
+	-webkit-animation-name:flipinY;
+    -webkit-animation-duration:0.5s;
+	-moz-animation-name:flipinY;
+    -moz-animation-duration:0.5s;
+	-o-animation-name:flipinY;
+    -o-animation-duration:0.5s;
+	animation-name:flipinY;
+    animation-duration:0.5s;
+    animation-fill-mode:both;
+}
+.fadeinUp{/*
+-moz-animation-name:flipinY;-webkit-animation-name:flipinY;-ms-animation-name:flipinY;-o-animation-name:flipinY;
+*/ backface-visibility:visible !important;
+	-webkit-animation-name:fadeinUp;
+    -webkit-animation-duration:0.5s;
+	-moz-animation-name:fadeinUp;
+    -moz-animation-duration:0.5s;
+	-o-animation-name:fadeinUp;
+    -o-animation-duration:0.5s;
+	animation-name:fadeinUp;
+    animation-duration:0.5s;
+    animation-fill-mode:both;
+}
+/*
+.animated{animation-duration:0.5s; animation-fill-mode:both;}
+*/
+
+
+@-webkit-keyframes flipinY{
+	0%{-webkit-transform:perspective(1000px) rotateY(10deg);opacity:0;}
+	100%{-webkit-transform:perspective(1000px) rotateY(0); opacity:1}
+}
+@-moz-keyframes flipinY{
+	0%{-moz-transform:perspective(1000px) rotateY(10deg);opacity:0;}
+	100%{-moz-transform:perspective(1000px) rotateY(0); opacity:1}
+}
+@-ms-keyframes flipinY{
+	0%{-ms-transform:perspective(1000px) rotateY(10deg);opacity:0;}
+	100%{-ms-transform:perspective(1000px) rotateY(0); opacity:1}
+}
+@-o-keyframes flipinY{
+	0%{-o-transform:perspective(1000px) rotateY(10deg);opacity:0;}
+	100%{-o-transform:perspective(1000px) rotateY(0); opacity:1}
+}
+
+
+@-webkit-keyframes fadeinUp{
+	0%{-webkit-transform:translate(0,-50px); opacity:0;}
+	100%{-webkit-transform:translate(0,0); opacity:1}
+}
+@-moz-keyframes fadeinUp{
+	0%{-moz-transform:translate(0,-50px); opacity:0;}
+	100%{-moz-transform:translate(0,0); opacity:1}
+}
+@-ms-keyframes fadeinUp{
+	0%{-ms-transform:translate(0,-50px); opacity:0;}
+	100%{-ms-transform:translate(0,0); opacity:1}
+}
+@-o-keyframes fadeinUp{
+	0%{-o-transform:translate(0,-50px); opacity:0;}
+	100%{-o-transform:translate(0,0); opacity:1}
+}
+
+
+@-webkit-keyframes swing{
+	0%{-webkit-transform:rotate(-15deg) scale(1.1);}
+	20%{-webkit-transform:rotate(15deg) scale(1.2);}
+	40%{-webkit-transform:rotate(-15deg) scale(1.3);}
+	60%{-webkit-transform:rotate(15deg) scale(1.4);}
+	100%{-webkit-transform:rotate(0) scale(1);}
+}
+@-moz-keyframes swing{
+	0%{-moz-transform:rotate(-15deg) scale(1.1);}
+	20%{-moz-transform:rotate(15deg) scale(1.2);}
+	40%{-moz-transform:rotate(-15deg) scale(1.3);}
+	60%{-moz-transform:rotate(15deg) scale(1.4);}
+	100%{-moz-transform:rotate(0) scale(1);}
+}
+@-ms-keyframes swing{
+	0%{-ms-transform:rotate(-15deg) scale(1.1);}
+	20%{-ms-transform:rotate(15deg) scale(1.2);}
+	40%{-ms-transform:rotate(-15deg) scale(1.3);}
+	60%{-ms-transform:rotate(15deg) scale(1.4);}
+	100%{-ms-transform:rotate(0) scale(1);}
+}
+@-o-keyframes swing{
+	0%{-o-transform:rotate(-15deg) scale(1.1);}
+	20%{-o-transform:rotate(15deg) scale(1.2);}
+	40%{-o-transform:rotate(-15deg) scale(1.3);}
+	60%{-o-transform:rotate(15deg) scale(1.4);}
+	100%{-o-transform:rotate(0) scale(1);}
+}
+
+/*
+通用的按钮样式
+*/
+.btn_area a{background:url(../skin/iwei/iwei_icons.png) no-repeat; width:81px; height:30px; display:inline-block; line-height:30px; text-align:center;}
+.btn_area a:link,.weibo_addKeyWord a:visited,.weibo_addKeyWord a:hover,.weibo_addKeyWord a:active{text-decoration:none;}
+.btn_area a.wei_btn_1{color:#fff; margin:0 10px 0 0}
+.btn_area a.wei_btn_2{background-position:0 -30px; color:#000}
+p.btn_area{text-align:center; margin:20px 0 0}
+/*
+成功的弹窗样式
+*/
+#successfullAlert{box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2); border:1px solid #ccc; position:fixed; left:50%; top:50%; width:auto; height:68px; z-index:14; line-height:68px; color:#333;font-size:14px; background:url(/image/com/lee_icons.png) no-repeat -350px -227px #fff; margin-left:-89px; margin-top:-34px; border-radius:5px; font-weight:bold}
+#successfullAlert p{line-height:68px; padding-left:60px; text-align:left; padding-right:20px}
+/*
+失败的弹窗样式
+*/
+#failAlert{box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2); border:1px solid #ccc; position:fixed; left:50%; top:50%; width:auto; height:68px; z-index:14; line-height:68px; color:#333; font-size:14px; background:url(/image/com/lee_icons.png) no-repeat -350px -310px #fff; margin-left:-89px; margin-top:-34px; font-weight:bold}
+#failAlert p{line-height:68px; padding-left:60px; text-align:left;padding-right:20px}
+/*
+alert_type1的弹窗样式
+*/
+#alert_type1{width:217px;margin:0 auto}
+#alert_type1 a.wei_sure{width:81px;height:30px;line-height:30px;text-align:center}

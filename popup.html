@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="skin/iwei.css" type="text/css" media="all" rel="stylesheet" />
+<script src="../jquery  v1.7.1.js"></script>
+<script src="popup.js"></script>
+</head>
+
+<body>
+<a href="javascript:void(0)" onclick="alert()">nihao</a>
+<a href="javascript:void(0)" onclick="_alert()">nihao</a>
+</body>
+<script type="application/javascript">
+
+function _alert(){
+	var a = new popUp.alert({
+		id:'333',
+		content:'你好吗',
+		title:'qued',
+		ok:function(){popUp.hideDialog(333)},
+		cancel:true,
+		time:2000
+	})
+	console.log(a)
+	//a.time(2000)
+};
+</script>
+</html>
