@@ -8,7 +8,6 @@ function _alert(){
 		ok:function(){popUp.hideDialog(333)},
 		cancel:true,
 	})
-	console.log(a)
 };
 名称 	类型 	默认值 	描述
 title 	String 	null 	弹窗标题
