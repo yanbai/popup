@@ -37,7 +37,7 @@ function _alert(){<br>
             </tr>
             <tr>
             	<td>
-                    <a href="#title">ok</a>
+                    <a href="#title">confirm</a>
                 </td>
                 <td>Function/Boolean</td>
                 <td>null</td>
@@ -53,7 +53,7 @@ function _alert(){<br>
             </tr>
             <tr>
             	<td>
-                    <a href="#title">okVal</a>
+                    <a href="#title">confirmVal</a>
                 </td>
                 <td>String</td>
                 <td>'确定'</td>

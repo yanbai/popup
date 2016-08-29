@@ -52,15 +52,15 @@
     /*弹出层*/
     var Popup = function(options){
         this.id = options.id;
-        var _defaultOkVal = "确认",
+        var _defaultConfirmVal = "确认",
             _cancelVal = "取消";
 
         $.extend(this, options);
         this.options = options;
         this.txt = options.content || '';
         this.tit = options.title || '';
-        this.btn = this.ok||this.cancel;
-        this.okVal = options.okVal||_defaultOkVal;
+        this.btn = this.confirm||this.cancel;
+        this.confirmVal = options.confirmVal||_defaultConfirmVal;
         this.cancelVal = options.cancelVal||_cancelVal;
         this.init();
         options.time && this.time(options.time);
@@ -96,20 +96,21 @@
             return this;
         },
         
-        OkEle:function(){
+        confirmEle:function(){
             var el,
                 t = this;
-            if(this.ok){
+            if(this.confirm){
                 el = document.createElement('a');
                 el.className = 'wei_btn_1';
                 el.href = 'javascript:void(0)';
-                el.innerHTML = this.okVal;
+                el.innerHTML = this.confirmVal;
             }else{
                 el = null;
             }
-            if(this.ok instanceof Function){
-                el.addEventListener('click',t.ok,false)
+            if(this.confirm instanceof Function){
+                el.addEventListener('click',t.confirm,false)
             }
+            debugger;
             return el;
         },
         
@@ -147,8 +148,9 @@
             if(this.btn){
                 var btn = document.createElement('p');
                 btn.className = 'btn_area';
-                btn.appendChild(this.OkEle());
-                btn.appendChild(this.cancelEle());
+
+                this.confirmEle() && btn.appendChild(this.confirmEle());
+                this.cancelEle() && btn.appendChild(this.cancelEle());
                 this.content.appendChild(btn);
             }
 
@@ -207,7 +209,7 @@
             $('.overlay').fadeIn(50,function(){});
             $('.overlay2').fadeIn(50,function(){callback});
         },
-        
+
         time:function(time){
             var t = this;
             time ? setTimeout(function(){t.hide()},time) : setTimeout(function(){t.hide()},2000)

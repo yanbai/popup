@@ -20,7 +20,7 @@ requirejs(['popup_v2'], function (Popup) {
 		id:'333',
 		content:'确认提交吗',
 		title:'确认',
-		ok:(function(){Popup.hideDialog(333); console.log(123)}).bind(confirmation),
+		confirm:(function(){Popup.hideDialog(333); console.log(123)}).bind(confirmation),
 		cancel:true
 		//time:2000
 	});
