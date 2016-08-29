@@ -1,3 +1,4 @@
+
 if(window.HTMLElement){
 	HTMLElement.prototype.__defineSetter__('outerHTML',function(sHTML){
 		var r = this.ownerDocument.createRange();
@@ -80,8 +81,8 @@ popUp.alert.prototype = {
 			</div>');
 			this.$tanchuan=$('#tanchuan_'+this.id);
 			this.html();
-			this.show();
-			popUp.ids.push(this.id);
+			
+			
 		}
 		return this;
 	},
@@ -150,7 +151,7 @@ popUp.alert.prototype = {
 		var t = this;
 		$('.overlay').css({opacity:0});
 		$('.overlay2').css({opacity:0.5});
-		this.dark((function(){t.position(t.id);t.$tanchuan.show().addClass('fadeinUp')})());
+		this.dark((function(){t.position(t.id);t.$tanchuan.show().addClass('fadeinUp'); popUp.ids.push(this.id);})());
 		if(options!=undefined&&options.callback!=undefined&&typeof(options.callback)=='function')options.callback.apply(this,options.params||[]);
 	},
 	
