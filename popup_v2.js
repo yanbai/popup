@@ -68,7 +68,7 @@
     Popup.ids = [];
     Popup.getDialog = function(id){return this.hasDialog(id)?document.getElementById('tanchuan_'+id):''};
     Popup.hasDialog = function(id){return document.getElementById('tanchuan_'+id)?true:false};
-    Popup.hideDialog = function(id){
+    Popup.removeDialog = function(id){
         if(this.hasDialog(id)){
             this.getDialog(id).parentNode.removeChild(this.getDialog(id))
             $('.overlay2').remove();$('.overlay').remove();
@@ -125,7 +125,7 @@
                 if(this.cancel instanceof Function){
                     el.addEventListener('click',t.cancel.bind(t),false)
                 }else{
-                    el.addEventListener('click',function(){t.hide('tanchuan_big')},false)
+                    el.addEventListener('click',function(){t.hide()},false)
                 }
             }else{
                 el = null;
@@ -198,10 +198,14 @@
             $('#overlay2').remove();
             $('#wei_loader').remove();
         },
-        
-        hide : function(){
+
+        remove: function(){
             this.$tanchuan.remove();$('.overlay2').remove();$('.overlay').remove();
             Popup.ids.splice(Popup.ids.indexOf(this.id),1);
+        },
+        
+        hide : function(){
+            this.$tanchuan.hide();$('.overlay2').hide();$('.overlay').hide();
         },
         
         dark:function(callback){
@@ -214,18 +218,8 @@
             time ? setTimeout(function(){t.hide()},time) : setTimeout(function(){t.hide()},2000)
         },
         
-        hideWithDark:function(id){
+        removeWithDark:function(id){
             $('#'+id).remove();
-        },
-        
-        hideFailAlert:function(){
-            popup.hideWithDark('failAlert');
-        },
-
-        hideAlertAndTanchuan:function(){
-            popup.hideWithDark('failAlert');
-            popup.hideWithDark('successfullAlert');
-            popup.hide('tanchuan_big');
         }
     }
     return Popup;
