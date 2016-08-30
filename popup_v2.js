@@ -7,7 +7,7 @@
     } else if (typeof module === 'object' && module.exports) {
         module.exports = factory(require('Popup')); // Node
     } else {
-        factory(root.Popup);                        // Browser
+        root.Popup = factory();                        // Browser
     }
 }(this, function (Popup) {
     if(window.HTMLElement){
@@ -51,7 +51,7 @@
     }
     /*弹出层*/
     var Popup = function(options){
-        this.id = options.id;
+        this.id = options.id || parseInt(Math.random() * 0xFFFFFF, 10);
         var _defaultConfirmVal = "确认",
             _cancelVal = "取消";
 
@@ -108,9 +108,8 @@
                 el = null;
             }
             if(this.confirm instanceof Function){
-                el.addEventListener('click',t.confirm,false)
+                el.addEventListener('click',t.confirm.bind(t),false)
             }
-            debugger;
             return el;
         },
         
@@ -124,7 +123,7 @@
                 el.innerHTML = this.cancelVal;
                 //todo 兼容性
                 if(this.cancel instanceof Function){
-                    el.addEventListener('click',t.cancel,false)
+                    el.addEventListener('click',t.cancel.bind(t),false)
                 }else{
                     el.addEventListener('click',function(){t.hide('tanchuan_big')},false)
                 }
