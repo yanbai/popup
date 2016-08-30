@@ -11,8 +11,11 @@
 </head>
 
 <body>
-<a href="javascript:void(0)" onclick="_alert()">nihao</a>
+<a href="javascript:void(0)" onclick="confirmShow()">确认提交</a>
+<a href="javascript:void(0)" onclick="warningShow()"> 警告 </a>
+
 </body>
+
 <script type="application/javascript">
 
 // requirejs(['popup_v2'], function (Popup) {
@@ -21,23 +24,36 @@
 // 		title:'确认',
 // 		confirm:function(){this.hide(); console.log(123)},
 // 		cancel:true
-// 		//time:2000
 // 	});
-// 	function _alert(){
+// 	function confirmShow(){
 // 		confirmation.show();
 // 	};
-// 	window._alert = _alert;
+// 	window.confirmShow = confirmShow;
 // });
-var confirmation = new Popup({
-	content:'确认提交吗',
-	title:'确认',
-	confirm:function(){this.hide(); console.log(123)},
-	cancel:true
-	//time:2000
-});
-function _alert(){
-	confirmation.show();
-};
+(function(Popup, window){
+	var confirmation = new Popup({
+		content:'确认提交吗',
+		title:'确认',
+		confirm:function(){this.hide(); console.log(123)},
+		cancel:true
+	});
+	function confirmShow(){
+		confirmation.show();
+	};
+	window.confirmShow = confirmShow;
+
+
+	var warning = new Popup({
+		content:'您当前操作有风险',
+		title:'警告',
+		time: 2000
+	});
+	function warningShow(){
+		warning.show();
+	};
+	window.warningShow = warningShow;
+
+})(Popup, window)
 
 </script>
 </html>

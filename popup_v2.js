@@ -10,45 +10,6 @@
         root.Popup = factory();                        // Browser
     }
 }(this, function (Popup) {
-    if(window.HTMLElement){
-        HTMLElement.prototype.__defineSetter__('outerHTML',function(sHTML){
-            var r = this.ownerDocument.createRange();
-            r.setStartBefore(this);
-            var df = r.createContextualFragment(sHTML);
-            this.parentNode.replaceChild(df,this);
-            return sHTML;
-        });
-        HTMLElement.prototype.__defineGetter__('outerHTML',function(sHTML){
-            var attr;
-            var attrs = this.attributes;
-            var str = '<'+this.tagName.toLowerCase();
-            for(var i=0;i<attrs.length;i++){
-                var attr=attrs[i];
-                if(attr.specified)str+=' '+attr.name+'="'+attr.value+'"';
-            }
-                if(!this.canHaveChildren)return str+'>';
-                return str+'>'+this.innerHTML;
-        });
-        HTMLElement.prototype.__defineGetter__("canHaveChildren",function() {
-            switch(this.tagName.toLowerCase()) {
-                case "area":
-                case "base":
-                case "basefont":
-                case "col":
-                case "frame":
-                case "hr":
-                case "img":
-                case "br":
-                case "input":
-                case "isindex":
-                case "link":
-                case "meta":
-                case "param":
-                return false;
-            }
-            return true;
-        });
-    }
     /*弹出层*/
     var Popup = function(options){
         this.id = options.id || parseInt(Math.random() * 0xFFFFFF, 10);
@@ -63,8 +24,8 @@
         this.confirmVal = options.confirmVal||_defaultConfirmVal;
         this.cancelVal = options.cancelVal||_cancelVal;
         this.init();
-        options.time && this.time(options.time);
     };
+
     Popup.ids = [];
     Popup.getDialog = function(id){return this.hasDialog(id)?document.getElementById('tanchuan_'+id):''};
     Popup.hasDialog = function(id){return document.getElementById('tanchuan_'+id)?true:false};
@@ -163,6 +124,7 @@
             $('.overlay2').css({opacity:0.5});
             this.dark((function(){t.position(t.id);t.$tanchuan.show().addClass('fadeinUp')})());
             if(options!=undefined&&options.callback!=undefined&&typeof(options.callback)=='function')options.callback.apply(this,options.params||[]);
+            this.time && this.automagicallyDisappear(t.time);
         },
         
         //定位
@@ -213,7 +175,7 @@
             $('.overlay2').fadeIn(50,function(){callback});
         },
 
-        time:function(time){
+        automagicallyDisappear:function(time){
             var t = this;
             time ? setTimeout(function(){t.hide()},time) : setTimeout(function(){t.hide()},2000)
         },
